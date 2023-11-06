@@ -9,7 +9,7 @@ public class EnemySpawner : MonoBehaviour
     private Vector3 randomPos;
     public bool isGameClear;
     UIController uIController;
-    public float interval, boundary, offset;
+    public float interval, boundary, offset, high, low;
     // Start is called before the first frame update
 
     private void Awake()
@@ -22,26 +22,80 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
-       
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log(Time.time);
     }
 
     private IEnumerator EnemyGenerate(float n)
     {
-        while(uIController.score < 30)
+        while (Time.time < 16.5f)
         {
-            randomPos = new Vector3(Random.Range(-boundary, boundary), 3.0f, 20);
+            randomPos = new Vector3(Random.Range(-boundary, boundary), Random.Range(low, high), 20);
+            //randomPos = new Vector3(0, high, 20);
+            int index = Random.Range(0, 3);
+            Instantiate(enemy[index], randomPos, enemy[index].transform.rotation);
+            yield return new WaitForSeconds(2*n);
+        }
+        while (Time.time < 32.5f && Time.time > 16.5f)
+        {
+            randomPos = new Vector3(Random.Range(-boundary, boundary), Random.Range(low, high), 20);
+            //randomPos = new Vector3(0, high, 20);
             int index = Random.Range(0, 3);
             Instantiate(enemy[index], randomPos, enemy[index].transform.rotation);
             yield return new WaitForSeconds(n);
         }
-        Gameclear();
+        while (Time.time > 32.5f && Time.time < 47f)
+        {
+            randomPos = new Vector3(Random.Range(-boundary, boundary), Random.Range(low, high), 20);
+            //randomPos = new Vector3(0, high, 20);
+            int index = Random.Range(0, 3);
+            Instantiate(enemy[index], randomPos, enemy[index].transform.rotation);
+            yield return new WaitForSeconds(n/2);
+        }
+        while (Time.time > 47f && Time.time < 61.5f)
+        {
+            randomPos = new Vector3(Random.Range(-boundary+2, boundary), Random.Range(low, high), 20);
+            //randomPos = new Vector3(0, high, 20);
+            int index = Random.Range(0, 3);
+            Instantiate(enemy[index], randomPos, enemy[index].transform.rotation);
+            Instantiate(enemy[index], randomPos + Vector3.left*2, enemy[index].transform.rotation);
+            yield return new WaitForSeconds(n/2);
+        }
+
+        while (Time.time > 61.5f && Time.time < 75.5f)
+        {
+            randomPos = new Vector3(Random.Range(-boundary + 2, boundary), Random.Range(low, high), 20);
+            //randomPos = new Vector3(0, high, 20);
+            int index = Random.Range(0, 3);
+            Instantiate(enemy[index], randomPos, enemy[index].transform.rotation);
+            Instantiate(enemy[index], randomPos + Vector3.left + Vector3.down * 2, enemy[index].transform.rotation);
+            Instantiate(enemy[index], randomPos + Vector3.right + Vector3.down * 2, enemy[index].transform.rotation);
+            yield return new WaitForSeconds(n);
+        }
+        while (Time.time > 75.5f && Time.time < 90f)
+        {
+            int exists = Random.Range(0, 2);
+            randomPos = new Vector3(Random.Range(-boundary + 2, boundary), Random.Range(low, high), 20);
+            //randomPos = new Vector3(0, high, 20);
+            int index = Random.Range(0, 3);
+            if (exists == 0)
+            {
+                Instantiate(enemy[index], randomPos + Vector3.up, enemy[index].transform.rotation);
+                Instantiate(enemy[index], randomPos + Vector3.down, enemy[index].transform.rotation);
+            }
+            else
+            {
+                Instantiate(enemy[index], randomPos + Vector3.right, enemy[index].transform.rotation);
+                Instantiate(enemy[index], randomPos + Vector3.left, enemy[index].transform.rotation);
+            }
+            yield return new WaitForSeconds(n/2);
+        }
     }
+
 
     private IEnumerator Wait(float n)
     {
