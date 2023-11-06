@@ -9,15 +9,20 @@ public class EnemySpawner : MonoBehaviour
     private Vector3 randomPos;
     public bool isGameClear;
     UIController uIController;
-    public float interval, boundary;
+    public float interval, boundary, offset;
     // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
         isGameClear = false;
         clearUI.SetActive(false);
         uIController = uIcontrol.GetComponent<UIController>();
-        StartCoroutine(Wait(3));
-        StartCoroutine(EnemyGenerate(interval));
+        StartCoroutine(Wait(offset));
+    }
+
+    void Start()
+    {
+       
     }
 
     // Update is called once per frame
@@ -41,6 +46,7 @@ public class EnemySpawner : MonoBehaviour
     private IEnumerator Wait(float n)
     {
         yield return new WaitForSeconds(n);
+        StartCoroutine(EnemyGenerate(interval));
     }
 
     public void Gameclear()

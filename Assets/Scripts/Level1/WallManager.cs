@@ -23,7 +23,8 @@ public class WallManager : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            SceneManager.LoadScene("GameOver");
+            uiController.score--;
+            Destroy(other.gameObject);
         }
     }
 }
