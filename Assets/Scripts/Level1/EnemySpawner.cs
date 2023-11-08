@@ -40,7 +40,7 @@ public class EnemySpawner : MonoBehaviour
             Instantiate(enemy[index], randomPos, enemy[index].transform.rotation);
             yield return new WaitForSeconds(2*n);
         }
-        while (Time.time < 32.5f && Time.time > 16.5f)
+        while (Time.time < 32f && Time.time > 16.5f)
         {
             randomPos = new Vector3(Random.Range(-boundary, boundary), Random.Range(low, high), 20);
             //randomPos = new Vector3(0, high, 20);
@@ -48,7 +48,7 @@ public class EnemySpawner : MonoBehaviour
             Instantiate(enemy[index], randomPos, enemy[index].transform.rotation);
             yield return new WaitForSeconds(n);
         }
-        while (Time.time > 32.5f && Time.time < 47f)
+        while (Time.time > 32f && Time.time < 47f)
         {
             randomPos = new Vector3(Random.Range(-boundary, boundary), Random.Range(low, high), 20);
             //randomPos = new Vector3(0, high, 20);
@@ -56,9 +56,9 @@ public class EnemySpawner : MonoBehaviour
             Instantiate(enemy[index], randomPos, enemy[index].transform.rotation);
             yield return new WaitForSeconds(n/2);
         }
-        while (Time.time > 47f && Time.time < 61.5f)
+        while (Time.time > 47f && Time.time < 61f)
         {
-            randomPos = new Vector3(Random.Range(-boundary+2, boundary), Random.Range(low, high), 20);
+            randomPos = new Vector3(Random.Range(-boundary+1, boundary-1), Random.Range(low, high), 20);
             //randomPos = new Vector3(0, high, 20);
             int index = Random.Range(0, 3);
             Instantiate(enemy[index], randomPos, enemy[index].transform.rotation);
@@ -66,9 +66,9 @@ public class EnemySpawner : MonoBehaviour
             yield return new WaitForSeconds(n/2);
         }
 
-        while (Time.time > 61.5f && Time.time < 75.5f)
+        while (Time.time > 61f && Time.time < 75f)
         {
-            randomPos = new Vector3(Random.Range(-boundary + 2, boundary), Random.Range(low, high), 20);
+            randomPos = new Vector3(Random.Range(-boundary + 1, boundary-1), Random.Range(low, high), 20);
             //randomPos = new Vector3(0, high, 20);
             int index = Random.Range(0, 3);
             Instantiate(enemy[index], randomPos, enemy[index].transform.rotation);
@@ -76,10 +76,10 @@ public class EnemySpawner : MonoBehaviour
             Instantiate(enemy[index], randomPos + Vector3.right + Vector3.down * 2, enemy[index].transform.rotation);
             yield return new WaitForSeconds(n);
         }
-        while (Time.time > 75.5f && Time.time < 90f)
+        while (Time.time > 75f && Time.time < 89.5f)
         {
             int exists = Random.Range(0, 2);
-            randomPos = new Vector3(Random.Range(-boundary + 2, boundary), Random.Range(low, high), 20);
+            randomPos = new Vector3(Random.Range(-boundary+1, boundary-2), Random.Range(low, high), 20);
             //randomPos = new Vector3(0, high, 20);
             int index = Random.Range(0, 3);
             if (exists == 0)
