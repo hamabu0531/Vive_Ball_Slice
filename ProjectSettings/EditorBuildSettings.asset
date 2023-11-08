@@ -8,15 +8,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Title.unity
     guid: cb0bf9d92dac08e459e2b699e09cee7b
-  - enabled: 1
-    path: Assets/Scenes/StageSelect.unity
-    guid: 0a33adde9a8df214984478a205aa8def
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Music1.unity
     guid: 77b7141942dc54041beb8217a7b269c6
-  - enabled: 1
-    path: Assets/Scenes/Level2.unity
-    guid: eab1dea9d44ad58449c5b22560416fae
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 6c30d25241b8d3c4786edc479b77b811
