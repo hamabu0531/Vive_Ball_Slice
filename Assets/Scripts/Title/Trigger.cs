@@ -20,7 +20,7 @@ public class Trigger : MonoBehaviour
     {
         if (Iui.GetState(SteamVR_Input_Sources.LeftHand) || Iui.GetState(SteamVR_Input_Sources.RightHand))
         {
-            SceneManager.LoadScene("Level1");
+            SceneManager.LoadScene("Music1");
         }
     }
 }

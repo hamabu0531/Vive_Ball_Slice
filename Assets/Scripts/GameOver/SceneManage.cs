@@ -7,7 +7,7 @@ using Valve.VR;
 
 public class SceneManage : MonoBehaviour
 {
-    private SteamVR_Action_Boolean Iui = SteamVR_Actions.default_InteractUI;
+    private SteamVR_Action_Boolean haptic = SteamVR_Actions._default.Teleport;
     private Boolean interacrtui;
     // Start is called before the first frame update
     void Start()
@@ -18,9 +18,9 @@ public class SceneManage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Iui.GetState(SteamVR_Input_Sources.LeftHand) || Iui.GetState(SteamVR_Input_Sources.RightHand))
+        if (haptic.GetState(SteamVR_Input_Sources.LeftHand) || haptic.GetState(SteamVR_Input_Sources.RightHand))
         {
-            SceneManager.LoadScene("Music1");
+            SceneManager.LoadScene("Title");
         }
     }
 }
