@@ -99,7 +99,7 @@ public class EnemySpawner : MonoBehaviour
             yield return new WaitForSeconds(n/2);
         }
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(4);
 
         SceneManager.LoadScene("GameOver");
     }
