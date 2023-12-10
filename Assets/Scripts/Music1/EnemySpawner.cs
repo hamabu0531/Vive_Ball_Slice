@@ -5,115 +5,49 @@ using UnityEngine.SceneManagement;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject uIcontrol, clearUI;
     public GameObject[] enemy;
+    public TextAsset sampleJson;
+    public float offset, boundary, high, low, currentBars;
     private Vector3 randomPos;
-    public bool isGameClear;
-    UIController uIController;
-    public float interval, boundary, offset, high, low;
-    private float currentTime, beginTime;
+    MusicClass musicClass;
     // Start is called before the first frame update
-
-    private void Awake()
-    {
-        isGameClear = false;
-        clearUI.SetActive(false);
-        beginTime = Time.realtimeSinceStartup;
-        uIController = uIcontrol.GetComponent<UIController>();
-        StartCoroutine(Wait(offset));
-    }
 
     void Start()
     {
+        musicClass = JsonUtility.FromJson<MusicClass>(sampleJson.text);
+        currentBars = 0;
+
+        StartCoroutine(IntervalStart(offset));
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Time.time);
-        currentTime = Time.realtimeSinceStartup - beginTime;
     }
 
-    private IEnumerator EnemyGenerate(float n)
+    private IEnumerator IntervalStart(float offset)
     {
-        while (currentTime < 16.5f)
-        {
-            randomPos = new Vector3(Random.Range(-boundary, boundary), Random.Range(low, high), 20);
-            //randomPos = new Vector3(0, high, 20);
-            int index = Random.Range(0, 3);
-            Instantiate(enemy[index], randomPos, enemy[index].transform.rotation);
-            yield return new WaitForSeconds(2*n);
-        }
-        while (currentTime < 32.5f && currentTime > 16.5f)
-        {
-            randomPos = new Vector3(Random.Range(-boundary, boundary-1), Random.Range(low, high), 20);
-            //randomPos = new Vector3(0, high, 20);
-            int index = Random.Range(0, 3);
-            Instantiate(enemy[index], randomPos, enemy[index].transform.rotation);
-            yield return new WaitForSeconds(n);
-        }
-        while (currentTime > 32.5f && currentTime < 47.3f)
-        {
-            randomPos = new Vector3(Random.Range(-boundary, boundary-1), Random.Range(low, high), 20);
-            //randomPos = new Vector3(0, high, 20);
-            int index = Random.Range(0, 3);
-            Instantiate(enemy[index], randomPos, enemy[index].transform.rotation);
-            yield return new WaitForSeconds(n/2);
-        }
-        while (currentTime > 47.3f && currentTime < 61.5f)
-        {
-            randomPos = new Vector3(Random.Range(-boundary, boundary-1), Random.Range(low, high), 20);
-            //randomPos = new Vector3(0, high, 20);
-            int index = Random.Range(0, 3);
-            Instantiate(enemy[index], randomPos, enemy[index].transform.rotation);
-            Instantiate(enemy[index], randomPos + Vector3.left*2, enemy[index].transform.rotation);
-            yield return new WaitForSeconds(n/2);
-        }
+        yield return new WaitForSeconds(offset);
+        StartCoroutine(EnemyGenerate(musicClass.BPM));
+    }
+    private IEnumerator EnemyGenerate(float BPM)
+    {
+        StartCoroutine(TTTT(BPM));
 
-        while (currentTime > 61.5f && currentTime < 75.5f)
-        {
-            randomPos = new Vector3(Random.Range(-boundary, boundary-1), Random.Range(low, high), 20);
-            //randomPos = new Vector3(0, high, 20);
-            int index = Random.Range(0, 3);
-            Instantiate(enemy[index], randomPos, enemy[index].transform.rotation);
-            Instantiate(enemy[index], randomPos + Vector3.left + Vector3.down * 2, enemy[index].transform.rotation);
-            Instantiate(enemy[index], randomPos + Vector3.right + Vector3.down * 2, enemy[index].transform.rotation);
-            yield return new WaitForSeconds(n);
-        }
-        while (currentTime > 75.5f && currentTime < 90f)
-        {
-            int exists = Random.Range(0, 2);
-            randomPos = new Vector3(Random.Range(-boundary, boundary-1), Random.Range(low, high), 20);
-            //randomPos = new Vector3(0, high, 20);
-            int index = Random.Range(0, 3);
-            if (exists == 0)
-            {
-                Instantiate(enemy[index], randomPos + Vector3.up, enemy[index].transform.rotation);
-                Instantiate(enemy[index], randomPos + Vector3.down, enemy[index].transform.rotation);
-            }
-            else
-            {
-                Instantiate(enemy[index], randomPos + Vector3.right, enemy[index].transform.rotation);
-                Instantiate(enemy[index], randomPos + Vector3.left, enemy[index].transform.rotation);
-            }
-            yield return new WaitForSeconds(n/2);
-        }
-
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(musicClass.length);
 
         SceneManager.LoadScene("GameOver");
-    }
+    }  
 
-
-    private IEnumerator Wait(float n)
+    public IEnumerator TTTT(float BPM)
     {
-        yield return new WaitForSeconds(n);
-        StartCoroutine(EnemyGenerate(interval));
-    }
-
-    public void Gameclear()
-    {
-        isGameClear = true;
-        clearUI.SetActive(true);
+        while (currentBars < musicClass.bars)
+        {
+            currentBars += 0.25f;
+            randomPos = new Vector3(Random.Range(-boundary, boundary), Random.Range(low, high), 20);
+            int index = Random.Range(0, 3);
+            Instantiate(enemy[index], randomPos, enemy[index].transform.rotation);
+            yield return new WaitForSeconds(60/BPM);
+        }  
     }
 }
