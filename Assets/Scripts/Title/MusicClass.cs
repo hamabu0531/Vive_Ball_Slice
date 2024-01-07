@@ -15,7 +15,4 @@ public class MusicClass
 
     [SerializeField]
     public float bars;
-
-    [SerializeField]
-    public float length;
 }

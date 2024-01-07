@@ -34,7 +34,7 @@ public class EnemySpawner : MonoBehaviour
     {
         StartCoroutine(TTTT(BPM));
 
-        yield return new WaitForSeconds(musicClass.length);
+        yield return new WaitForSeconds(musicClass.bars * musicClass.beat * musicClass.BPM / 60.0f);
 
         SceneManager.LoadScene("GameOver");
     }  
@@ -49,5 +49,33 @@ public class EnemySpawner : MonoBehaviour
             Instantiate(enemy[index], randomPos, enemy[index].transform.rotation);
             yield return new WaitForSeconds(60/BPM);
         }  
+    }
+    public IEnumerator TTTF(float BPM)
+    {
+        while (currentBars+0.25f < musicClass.bars)
+        {
+            currentBars += 0.25f;
+            randomPos = new Vector3(Random.Range(-boundary, boundary), Random.Range(low, high), 20);
+            int index = Random.Range(0, 3);
+            Instantiate(enemy[index], randomPos, enemy[index].transform.rotation);
+            yield return new WaitForSeconds(60 / BPM);
+        }
+    }
+    public IEnumerator TTFT(float BPM)
+    {
+        while (currentBars < musicClass.bars)
+        {
+            currentBars += 0.25f;
+            randomPos = new Vector3(Random.Range(-boundary, boundary), Random.Range(low, high), 20);
+            int index = Random.Range(0, 3);
+            Instantiate(enemy[index], randomPos, enemy[index].transform.rotation);
+            yield return new WaitForSeconds(60 / BPM);
+        }
+        currentBars += 0.25f;
+        yield return new WaitForSeconds(60 / BPM);
+        currentBars += 0.25f;
+        randomPos = new Vector3(Random.Range(-boundary, boundary), Random.Range(low, high), 20);
+        int ind = Random.Range(0, 3);
+        Instantiate(enemy[ind], randomPos, enemy[ind].transform.rotation);
     }
 }
