@@ -50,7 +50,7 @@ public class EnemySpawner : MonoBehaviour
             yield return new WaitForSeconds(60 / BPM * musicClass.beat);
         }
 
-        yield return new WaitForSeconds(musicClass.bars * musicClass.beat * musicClass.BPM / 60.0f);
+        yield return new WaitForSeconds(musicClass.bars * musicClass.beat * musicClass.BPM / 60.0fÅ@+1.0f);
 
         SceneManager.LoadScene("GameOver");
     }  
