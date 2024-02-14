@@ -34,18 +34,38 @@ public class EnemySpawner : MonoBehaviour
     {
         while (currentBars < musicClass.bars)
         {
-            int ran = Random.Range(0, 3);
+            int ran = Random.Range(0, 8);
             if (ran < 1)
             {
                 StartCoroutine(TTTT(BPM));
             }
             else if (ran < 2)
             {
-                StartCoroutine(TTFT(BPM));
+                StartCoroutine(TTTF(BPM));
             }
             else if (ran < 3)
             {
-                StartCoroutine(TTTF(BPM));
+                StartCoroutine(TTFT(BPM));
+            }
+            else if (ran < 4) 
+            {
+                StartCoroutine(TFTT(BPM));
+            }
+            else if (ran < 5)
+            {
+                StartCoroutine(FTTT(BPM));
+            }
+            else if (ran < 6)
+            {
+                StartCoroutine(TTFF(BPM));
+            }
+            else if (ran < 7)
+            {
+                StartCoroutine(TFFT(BPM));
+            }
+            else if (ran < 8)
+            {
+                StartCoroutine(FFTT(BPM));
             }
             yield return new WaitForSeconds(60 / BPM * musicClass.beat);
         }
@@ -73,13 +93,16 @@ public class EnemySpawner : MonoBehaviour
             int index = Random.Range(0, 3);
             Instantiate(enemy[index], randomPos, enemy[index].transform.rotation);
             yield return new WaitForSeconds(60 / BPM);
+            currentBars += 0.25f;
             index = Random.Range(0, 3);
             Instantiate(enemy[index], randomPos, enemy[index].transform.rotation);
             yield return new WaitForSeconds(60 / BPM);
-            index = Random.Range(0, 3);
+        currentBars += 0.25f;
+        index = Random.Range(0, 3);
             Instantiate(enemy[index], randomPos, enemy[index].transform.rotation);
             yield return new WaitForSeconds(60 / BPM);
-            yield return new WaitForSeconds(60 / BPM);
+        currentBars += 0.25f;
+        yield return new WaitForSeconds(60 / BPM);
 
     }
     public IEnumerator TTFT(float BPM)
@@ -89,12 +112,104 @@ public class EnemySpawner : MonoBehaviour
             int index = Random.Range(0, 3);
             Instantiate(enemy[index], randomPos, enemy[index].transform.rotation);
             yield return new WaitForSeconds(60 / BPM);
-            index = Random.Range(0, 3);
+        currentBars += 0.25f;
+        index = Random.Range(0, 3);
             Instantiate(enemy[index], randomPos, enemy[index].transform.rotation);
             yield return new WaitForSeconds(60 / BPM);
-            yield return new WaitForSeconds(60 / BPM);
-            index = Random.Range(0, 3);
+        currentBars += 0.25f;
+        yield return new WaitForSeconds(60 / BPM);
+        currentBars += 0.25f;
+        index = Random.Range(0, 3);
             Instantiate(enemy[index], randomPos, enemy[index].transform.rotation);
             yield return new WaitForSeconds(60 / BPM);
+    }
+
+    public IEnumerator TFTT(float BPM)
+    {
+        currentBars += 0.25f;
+        randomPos = new Vector3(Random.Range(-boundary, boundary), Random.Range(low, high), 20);
+        int index = Random.Range(0, 3);
+        Instantiate(enemy[index], randomPos, enemy[index].transform.rotation);
+        yield return new WaitForSeconds(60 / BPM);
+        currentBars += 0.25f;
+        yield return new WaitForSeconds(60 / BPM);
+        currentBars += 0.25f;
+        index = Random.Range(0, 3);
+        Instantiate(enemy[index], randomPos, enemy[index].transform.rotation);
+        yield return new WaitForSeconds(60 / BPM);
+        currentBars += 0.25f;
+        index = Random.Range(0, 3);
+        Instantiate(enemy[index], randomPos, enemy[index].transform.rotation);
+        yield return new WaitForSeconds(60 / BPM);
+    }
+
+    public IEnumerator FTTT(float BPM)
+    {
+        currentBars += 0.25f;
+        yield return new WaitForSeconds(60 / BPM);
+        currentBars += 0.25f;
+        randomPos = new Vector3(Random.Range(-boundary, boundary), Random.Range(low, high), 20);
+        int index = Random.Range(0, 3);
+        Instantiate(enemy[index], randomPos, enemy[index].transform.rotation);
+        yield return new WaitForSeconds(60 / BPM);
+        currentBars += 0.25f;
+        index = Random.Range(0, 3);
+        Instantiate(enemy[index], randomPos, enemy[index].transform.rotation);
+        yield return new WaitForSeconds(60 / BPM);
+        currentBars += 0.25f;
+        index = Random.Range(0, 3);
+        Instantiate(enemy[index], randomPos, enemy[index].transform.rotation);
+        yield return new WaitForSeconds(60 / BPM);
+    }
+
+    public IEnumerator TTFF(float BPM)
+    {
+        currentBars += 0.25f;
+        randomPos = new Vector3(Random.Range(-boundary, boundary), Random.Range(low, high), 20);
+        int index = Random.Range(0, 3);
+        Instantiate(enemy[index], randomPos, enemy[index].transform.rotation);
+        yield return new WaitForSeconds(60 / BPM);
+        currentBars += 0.25f;
+        index = Random.Range(0, 3);
+        Instantiate(enemy[index], randomPos, enemy[index].transform.rotation);
+        yield return new WaitForSeconds(60 / BPM);
+        currentBars += 0.25f;
+        yield return new WaitForSeconds(60 / BPM);
+        currentBars += 0.25f;
+        yield return new WaitForSeconds(60 / BPM);
+    }
+
+    public IEnumerator TFFT(float BPM)
+    {
+        currentBars += 0.25f;
+        randomPos = new Vector3(Random.Range(-boundary, boundary), Random.Range(low, high), 20);
+        int index = Random.Range(0, 3);
+        Instantiate(enemy[index], randomPos, enemy[index].transform.rotation);
+        yield return new WaitForSeconds(60 / BPM);
+        currentBars += 0.25f;
+        yield return new WaitForSeconds(60 / BPM);
+        currentBars += 0.25f;
+        yield return new WaitForSeconds(60 / BPM);
+        currentBars += 0.25f;
+        index = Random.Range(0, 3);
+        Instantiate(enemy[index], randomPos, enemy[index].transform.rotation);
+        yield return new WaitForSeconds(60 / BPM);
+    }
+
+    public IEnumerator FFTT(float BPM)
+    {
+        currentBars += 0.25f;
+        yield return new WaitForSeconds(60 / BPM);
+        currentBars += 0.25f;
+        yield return new WaitForSeconds(60 / BPM);
+        currentBars += 0.25f;
+        randomPos = new Vector3(Random.Range(-boundary, boundary), Random.Range(low, high), 20);
+        int index = Random.Range(0, 3);
+        Instantiate(enemy[index], randomPos, enemy[index].transform.rotation);
+        yield return new WaitForSeconds(60 / BPM);
+        currentBars += 0.25f;
+        index = Random.Range(0, 3);
+        Instantiate(enemy[index], randomPos, enemy[index].transform.rotation);
+        yield return new WaitForSeconds(60 / BPM);
     }
 }
