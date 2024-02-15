@@ -41,27 +41,5 @@ public class PlayerController : MonoBehaviour
         }
         //壁に行ったときにそれ以上外に行けない境界
 
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            transform.Rotate(Vector3.down * Time.deltaTime * rotationSpeed);
-        }
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            transform.Rotate(Vector3.up * Time.deltaTime * rotationSpeed);
-        }
-        //Playerの回転
-
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-            camera.transform.Rotate(Vector3.right * Time.deltaTime * rotationSpeed);
-        }
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            camera.transform.Rotate(Vector3.left * Time.deltaTime * rotationSpeed);
-        }
-        //カメラのみの回転
-
-        //実際の移動はHMDの位置関係で行うため上のコードは仮
-
     }
 }
