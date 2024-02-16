@@ -2,5 +2,6 @@
     "songName" : "Synthetic Girl",
     "beat" : "4",
     "BPM" : "125.25",
-    "bars" : "72"
+    "bars" : "72",
+    "offset" : "1.2"
 }
