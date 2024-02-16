@@ -23,4 +23,9 @@ public class SceneManage : MonoBehaviour
             SceneManager.LoadScene("Title");
         }
     }
+
+    public void LoadGame()
+    {
+        SceneManager.LoadScene("Music1");
+    }
 }

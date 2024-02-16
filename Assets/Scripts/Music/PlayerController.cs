@@ -40,6 +40,5 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(transform.position.x, transform.position.y, -zBound);
         }
         //•Ç‚És‚Á‚½‚Æ‚«‚É‚»‚êˆÈãŠO‚És‚¯‚È‚¢‹«ŠE
-
     }
 }

@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject[] enemy;
     public TextAsset sampleJson;
-    public float offset, boundary, high, low, currentBars;
+    public float boundary, high, low, currentBars;
     private Vector3 randomPos;
     MusicClass musicClass;
     // Start is called before the first frame update
@@ -17,7 +17,7 @@ public class EnemySpawner : MonoBehaviour
         musicClass = JsonUtility.FromJson<MusicClass>(sampleJson.text);
         currentBars = 0;
 
-        StartCoroutine(IntervalStart(offset));
+        StartCoroutine(IntervalStart(musicClass.offset));
     }
 
     // Update is called once per frame
