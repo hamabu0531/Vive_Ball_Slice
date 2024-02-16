@@ -28,4 +28,8 @@ public class SceneManage : MonoBehaviour
     {
         SceneManager.LoadScene("Music1");
     }
+    public void LoadTitle()
+    {
+        SceneManager.LoadScene("TItle");
+    }
 }
