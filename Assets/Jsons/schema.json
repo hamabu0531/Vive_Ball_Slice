@@ -1,0 +1,28 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "properties": {
+      "songName": {
+        "type": "string"
+      },
+      "beat": {
+        "type": "string"
+      },
+      "BPM": {
+        "type": "string"
+      },
+      "bars": {
+        "type": "string"
+      },
+      "offset": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "songName",
+      "beat",
+      "BPM",
+      "bars",
+      "offset"
+    ]
+  }
